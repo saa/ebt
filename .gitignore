@@ -1,0 +1,9 @@
+deps
+ebin
+*.dump
+.eunit
+*.beam
+.dialyzer_plt
+*_pb.hrl
+.idea
+*.iml

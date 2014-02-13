@@ -1,0 +1,12 @@
+{application, ebt,
+ [
+  {description, "Erlang batteries"},
+  {vsn, "1.0"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, {ebt, []}},
+  {env, []}
+ ]}.
