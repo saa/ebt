@@ -7,7 +7,6 @@
                   kernel,
                   stdlib
                  ]},
-  {mod, {ebt, []}},
   {env, []}
  ]
 }.
