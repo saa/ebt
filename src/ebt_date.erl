@@ -17,5 +17,6 @@ date_str_ru() ->
         11 => " ноября ",
         12 => " декабря "
        },
+    YearStr = " года",
     {{Y, M, D}, _} = erlang:localtime(),
-    unicode:characters_to_binary(integer_to_list(D) ++ maps:get(M, Months) ++ integer_to_list(Y)).
+    unicode:characters_to_binary(integer_to_list(D) ++ maps:get(M, Months) ++ integer_to_list(Y) ++ YearStr).
