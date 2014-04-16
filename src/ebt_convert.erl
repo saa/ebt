@@ -1,9 +1,20 @@
 -module(ebt_convert).
 
+-export([to_a/1]).
 -export([to_b/1]).
 -export([to_l/1]).
 -export([to_i/1]).
 -export([can_i/1]).
+
+to_a(Val) when is_integer(Val) ->
+    list_to_atom(integer_to_list(Val));
+to_a(Val) when is_atom(Val) ->
+    Val;
+to_a(Val) when is_list(Val) ->
+    list_to_atom(Val);
+to_a(Val) when is_binary(Val) ->
+    binary_to_atom(Val, utf8).
+
 
 to_b(V) when is_list(V) ->
     list_to_binary(V);
