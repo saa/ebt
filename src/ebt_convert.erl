@@ -6,6 +6,7 @@
 -export([to_i/1]).
 -export([can_i/1]).
 
+
 to_a(Val) when is_integer(Val) ->
     list_to_atom(integer_to_list(Val));
 to_a(Val) when is_atom(Val) ->
@@ -34,6 +35,7 @@ to_l(V) when is_atom(V) ->
 to_l(V) when is_list(V) ->
     V.
 
+
 to_i(V) when is_list(V) ->
     list_to_integer(V);
 to_i(V) when is_binary(V) ->
@@ -42,6 +44,7 @@ to_i(V) when is_atom(V) ->
     list_to_integer(atom_to_list(V));
 to_i(V) when is_integer(V) ->
     V.
+
 
 can_i(V) when is_list(V) ->
     try
