@@ -25,7 +25,7 @@ from_lists(List) ->
 
 from_lists([], Acc) ->
     Acc;
-from_lists([{Key, [{_,_}] = List} | Tail], Acc) when is_list(List) ->
+from_lists([{Key, [{_,_} | _] = List} | Tail], Acc) when is_list(List) ->
     from_lists(Tail, [{ebt_convert:to_a(Key), from_lists(List)} | Acc]);
 from_lists([{Key, Value} | Tail], Acc) ->
     from_lists(Tail, [{ebt_convert:to_a(Key), Value} | Acc]).
