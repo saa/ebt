@@ -1,9 +1,7 @@
 -module(ebt_maps).
 
--export([to_lists/2]).
 -export([to_lists/1]).
 -export([from_lists/1]).
--export([from_lists/2]).
 
 
 to_lists(Map) when is_map(Map) ->
@@ -20,12 +18,22 @@ to_lists([Head|Rest], Ready) ->
     to_lists(Rest, [to_lists(Head)|Ready]).
 
 
-from_lists(List) ->
-    maps:from_list(from_lists(List, [])).
+from_lists(List) when is_list(List) ->
+    case ebt_lists:is_proplist(List) of
+        true ->
+            maps:from_list(lists:map(fun prepare_proplist/1, List));
+        false ->
+            from_lists(List, [])
+    end;
+from_lists(Map) when is_map(Map) ->
+    maps:map(fun (_Key, Value) -> from_lists(Value) end, Map);
+from_lists(Untouched) ->
+    Untouched.
 
 from_lists([], Acc) ->
     Acc;
-from_lists([{Key, [{_,_} | _] = List} | Tail], Acc) when is_list(List) ->
-    from_lists(Tail, [{ebt_convert:to_a(Key), from_lists(List)} | Acc]);
-from_lists([{Key, Value} | Tail], Acc) ->
-    from_lists(Tail, [{ebt_convert:to_a(Key), Value} | Acc]).
+from_lists([Term| Rest], Acc) ->
+    from_lists(Rest, [from_lists(Term)| Acc]).
+
+prepare_proplist({Key, Value}) ->
+    {ebt_convert:to_a(Key), from_lists(Value)}.
