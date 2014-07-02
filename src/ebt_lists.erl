@@ -20,9 +20,13 @@ is_proplist(_) ->
     false.
 
 
+intersection(List1, List2) when length(List1) < length(List2) ->
+    lists:filter(fun (Element) -> lists:member(Element, List2) end, List1);
 intersection(List1, List2) ->
     lists:filter(fun (Element) -> lists:member(Element, List1) end, List2).
 
 
+diff(List1, List2) when length(List1) < length(List2) ->
+    lists:filter(fun (Element) -> not lists:member(Element, List2) end, List1);
 diff(List1, List2) ->
     lists:filter(fun (Element) -> not lists:member(Element, List1) end, List2).
