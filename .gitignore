@@ -7,3 +7,4 @@ ebin
 *_pb.hrl
 .idea
 *.iml
+.rebar
