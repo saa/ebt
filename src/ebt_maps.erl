@@ -17,7 +17,6 @@ to_lists([], Ready) ->
 to_lists([Head|Rest], Ready) ->
     to_lists(Rest, [to_lists(Head)|Ready]).
 
-
 from_lists(List) when is_list(List) ->
     case ebt_lists:is_proplist(List) of
         true ->
