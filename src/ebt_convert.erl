@@ -5,7 +5,16 @@
 -export([to_l/1]).
 -export([to_i/1]).
 -export([can_i/1]).
+-export([convert/2]).
 
+convert(Value, atom) ->
+    to_a(Value);
+convert(Value, integer) ->
+    to_i(Value);
+convert(Value, list) ->
+    to_l(Value);
+convert(Value, b) ->
+    to_b(Value).
 
 to_a(Val) when is_integer(Val) ->
     list_to_atom(integer_to_list(Val));

@@ -2,6 +2,7 @@
 
 -export([get/2]).
 -export([get/3]).
+-export([get_conv/3]).
 
 -spec get(any(), [{any(), any()}]) -> any().
 get(Key, PL) ->
@@ -13,3 +14,21 @@ get(Key, PL, Default) ->
         {Key, Value} -> Value;
         false -> Default
     end.
+
+get_conv(Key, PL, ToType) ->
+    case ebt_pl:get(Key, PL) of
+        undefined ->
+            undefined;
+        Value ->
+            ebt_convert:convert(Value, ToType)
+    end.
+
+
+
+
+
+
+
+
+
+
