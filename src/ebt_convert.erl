@@ -4,6 +4,7 @@
 -export([to_b/1]).
 -export([to_l/1]).
 -export([to_i/1]).
+-export([to_f/1]).
 -export([can_i/1]).
 -export([convert/2]).
 
@@ -15,6 +16,11 @@ convert(Value, list) ->
     to_l(Value);
 convert(Value, b) ->
     to_b(Value).
+
+to_f(Val) when is_binary(Val) ->
+    binary_to_float(Val);
+to_f(Val) when is_list(Val) ->
+    list_to_float(Val).
 
 to_a(Val) when is_integer(Val) ->
     list_to_atom(integer_to_list(Val));
