@@ -14,7 +14,7 @@ convert(Value, integer) ->
     to_i(Value);
 convert(Value, list) ->
     to_l(Value);
-convert(Value, b) ->
+convert(Value, binary) ->
     to_b(Value).
 
 to_f(Val) when is_binary(Val) ->
