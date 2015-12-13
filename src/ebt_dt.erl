@@ -3,6 +3,10 @@
 -export([timestamp/0]).
 -export([datetime_to_timestamp/1]).
 
+%%====================================================================
+%% API
+%%====================================================================
+
 -spec timestamp() -> non_neg_integer().
 timestamp() ->
     {Mega, Secs, _} = now(),

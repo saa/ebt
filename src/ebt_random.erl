@@ -4,6 +4,10 @@
 -export([string/2]).
 -export([numbers/2]).
 
+%%====================================================================
+%% API
+%%====================================================================
+
 string(Len) ->
     Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             "abcdefghijklmnopqrstuvwxyz"

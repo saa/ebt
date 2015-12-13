@@ -2,6 +2,9 @@
 
 -export([parse_accept_language/1]).
 
+%%====================================================================
+%% API
+%%====================================================================
 
 %% @doc Parse Accept-Language header
 -spec parse_accept_language(AcceptLanguage) -> Result when

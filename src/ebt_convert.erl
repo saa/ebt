@@ -7,6 +7,16 @@
 -export([to_f/1]).
 -export([can_i/1]).
 -export([convert/2]).
+-export([to_lower/1]).
+
+%%====================================================================
+%% API
+%%====================================================================
+
+to_lower(Value) when is_list(Value) ->
+    string:to_lower(Value);
+to_lower(Value) when is_binary(Value) ->
+    to_b(string:to_lower(to_l(Value))).
 
 convert(Value, atom) ->
     to_a(Value);
@@ -31,7 +41,6 @@ to_a(Val) when is_list(Val) ->
 to_a(Val) when is_binary(Val) ->
     binary_to_atom(Val, utf8).
 
-
 to_b(V) when is_list(V) ->
     list_to_binary(V);
 to_b(V) when is_integer(V) ->
@@ -50,7 +59,6 @@ to_l(V) when is_atom(V) ->
 to_l(V) when is_list(V) ->
     V.
 
-
 to_i(V) when is_list(V) ->
     list_to_integer(V);
 to_i(V) when is_binary(V) ->
@@ -59,7 +67,6 @@ to_i(V) when is_atom(V) ->
     list_to_integer(atom_to_list(V));
 to_i(V) when is_integer(V) ->
     V.
-
 
 can_i(V) when is_list(V) ->
     try
